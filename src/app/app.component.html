@@ -1,0 +1,46 @@
+<div class="app-shell">
+  <header class="app-header">
+    <div class="header-left">
+      <img src="assets/ResQFood.png" alt="ResQFood Logo" class="logo-mark" />
+      <div class="logo-text">
+        <span class="logo-title">ResQFood</span>
+        <span class="logo-subtitle">Rescata comida, cuida el planeta</span>
+      </div>
+    </div>
+
+    <nav class="header-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Inicio
+      </a>
+      <a routerLink="/ofertas" routerLinkActive="active">
+        Soy usuario
+      </a>
+      <a routerLink="/negocios" routerLinkActive="active">
+        Soy negocio
+      </a>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-metrics">
+      <div class="metric-card">
+        <span class="metric-label">Comida rescatada este mes</span>
+        <span class="metric-value">230 kg</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">CO₂ evitado</span>
+        <span class="metric-value">350 kg</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Negocios aliados</span>
+        <span class="metric-value">42</span>
+      </div>
+    </div>
+    <p class="footer-copy">ResQFood · Diseñado para reducir el desperdicio de comida</p>
+  </footer>
+</div>
+

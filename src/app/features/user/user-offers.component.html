@@ -1,0 +1,86 @@
+<section class="offers-page">
+  <header class="offers-header">
+    <div>
+      <h2>Ofertas cerca de ti</h2>
+      <p>Elige un pack sorpresa y rescata comida a mejor precio.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-filter">Filtrar</button>
+      <button class="btn-location">Usar mi ubicación</button>
+    </div>
+  </header>
+
+  <div class="user-impact">
+    <div>
+      <span class="impact-label">Packs rescatados</span>
+      <span class="impact-value">6</span>
+    </div>
+    <div>
+      <span class="impact-label">Comida (kg)</span>
+      <span class="impact-value">9</span>
+    </div>
+    <div>
+      <span class="impact-label">Dinero ahorrado</span>
+      <span class="impact-value">$45.000</span>
+    </div>
+  </div>
+
+  <div class="offers-layout">
+    <aside class="filters">
+      <h3>Filtrar por</h3>
+      <div class="filter-group">
+        <span class="filter-label">Categoria</span>
+        <div class="filter-chips">
+          @for (category of categories; track category) {
+            <button
+              class="chip"
+              [class.active]="selectedCategory === category"
+              (click)="selectCategory(category)">
+              {{ category }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Hora de recogida</span>
+        <div class="filter-chips">
+          <button class="chip">Antes de 7 p.m.</button>
+          <button class="chip">7 p.m. - 9 p.m.</button>
+          <button class="chip">Después de 9 p.m.</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="offers-list">
+      @for (offer of filteredOffers; track offer.id) {
+        <article class="offer-card">
+          <div class="offer-avatar">
+            @if (offer.imageUrl) {
+              <img [src]="offer.imageUrl" [alt]="offer.businessName" />
+            }
+          </div>
+          <div class="offer-info">
+            <h3>{{ offer.businessName }}</h3>
+            <p class="offer-type">{{ offer.offerName }}</p>
+            <p class="offer-meta">Hoy · Recoger {{ offer.pickupTime }} · {{ offer.distance }} km</p>
+          </div>
+          <div class="offer-side">
+            <div class="offer-prices">
+              <span class="current">{{ formatPrice(offer.price) }}</span>
+              <span class="original">{{ formatPrice(offer.originalPrice) }}</span>
+            </div>
+            <button
+              class="btn-reserve"
+              [class.btn-disabled]="!offer.available"
+              [disabled]="!offer.available"
+              (click)="onReserve(offer)">
+              {{ offer.available ? 'Reservar' : 'Agotada' }}
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

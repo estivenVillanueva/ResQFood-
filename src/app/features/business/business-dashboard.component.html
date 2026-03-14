@@ -1,0 +1,48 @@
+<section class="business-dashboard">
+  <header class="dashboard-header">
+    <div>
+      <h2>Panel del negocio</h2>
+      <p>Resumen de tus ofertas, ventas e impacto generado.</p>
+    </div>
+    <button class="btn-primary" (click)="onPublishOffer()">
+      Publicar nueva oferta
+    </button>
+  </header>
+
+  <div class="dashboard-grid">
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-label">Packs publicados hoy</span>
+        <span class="stat-value">{{ stats.publishedToday }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Packs reservados</span>
+        <span class="stat-value">{{ stats.reserved }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Comida rescatada (kg)</span>
+        <span class="stat-value">{{ stats.foodRescued }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Ingresos por ResQFood</span>
+        <span class="stat-value">{{ formatPrice(stats.revenue) }}</span>
+      </div>
+    </div>
+
+    <div class="today-offers">
+      <h3>Ofertas de hoy</h3>
+      @for (offer of offers; track offer.id) {
+        <div class="offer-row">
+          <div>
+            <p class="offer-name">{{ offer.name }}</p>
+            <p class="offer-detail">{{ offer.availablePacks + offer.reservedPacks }} packs · Recogida {{ offer.pickupTime }}</p>
+          </div>
+          <span class="offer-status" [class.offer-status-done]="offer.status === 'soldout'" [class.offer-status-draft]="offer.status === 'draft'">
+            {{ offer.status === 'active' ? 'Activa' : offer.status === 'soldout' ? 'Agotada' : 'Borrador' }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+

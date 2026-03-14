@@ -1,0 +1,114 @@
+<section class="landing">
+  <div class="landing-hero">
+    <div class="hero-text">
+      <p class="hero-pill">Plataforma social · Colombia</p>
+      <h1>
+        Rescata comida deliciosa
+        <span>antes de que se desperdicie.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Conecta con restaurantes, panaderías y supermercados que venden su comida
+        del final del día a precio reducido. Tú ahorras, ellos desperdician menos
+        y el planeta respira.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/ofertas" class="btn btn-primary">
+          Quiero rescatar comida
+        </a>
+        <a routerLink="/negocios" class="btn btn-ghost">
+          Soy un negocio
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-title">Hasta 60% de descuento</span>
+          <span class="meta-caption">en comida que aún está perfecta</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <span class="meta-title">Impacto ambiental real</span>
+          <span class="meta-caption">menos CO₂ y menos basura</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-photo">
+        @if (heroImageUrl) {
+          <img [src]="heroImageUrl" alt="Platos preparados listos para ser rescatados" />
+        } @else {
+          <div class="hero-placeholder"></div>
+        }
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="badge">Ofertas cerca de ti</span>
+          <span class="hero-location">Chapinero · Bogotá</span>
+        </div>
+
+        <div class="offer-list">
+          @for (offer of heroOffers; track offer.businessName) {
+            <article class="offer-card">
+              <div class="offer-avatar">
+                @if (offer.imageUrl) {
+                  <img [src]="offer.imageUrl" [alt]="offer.businessName" />
+                }
+              </div>
+              <div class="offer-main">
+                <h3>{{ offer.businessName }}</h3>
+                <p class="offer-name">{{ offer.offerName }}</p>
+                <p class="offer-time">Recoger hoy · {{ offer.pickupTime }}</p>
+              </div>
+              <div class="offer-price">
+                <span class="price-current">{{ formatPrice(offer.currentPrice) }}</span>
+                <span class="price-original">{{ formatPrice(offer.originalPrice) }}</span>
+                <span class="price-tag">-{{ calculateDiscount(offer.originalPrice, offer.currentPrice) }}%</span>
+              </div>
+            </article>
+          }
+        </div>
+
+        <div class="hero-card-footer">
+          <p>
+            Con cada reserva estás evitando que buena comida termine en la basura.
+          </p>
+          <div class="hero-impact">
+            <div>
+              <span class="impact-number">230 kg</span>
+              <span class="impact-label">Comida rescatada este mes</span>
+            </div>
+            <div>
+              <span class="impact-number">350 kg</span>
+              <span class="impact-label">CO₂ evitado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="how-it-works">
+    <h2>Cómo funciona ResQFood</h2>
+    <div class="steps">
+      <article class="step">
+        <div class="step-icon">1</div>
+        <h3>Explora ofertas cercanas</h3>
+        <p>Ve packs sorpresa publicados por negocios de tu zona.</p>
+      </article>
+      <article class="step">
+        <div class="step-icon">2</div>
+        <h3>Reserva y ahorra</h3>
+        <p>Reserva tu pack con descuento y recibe tu código.</p>
+      </article>
+      <article class="step">
+        <div class="step-icon">3</div>
+        <h3>Recoge en el local</h3>
+        <p>Recoge en la franquicia horaria indicada y evita desperdicio.</p>
+      </article>
+    </div>
+  </section>
+</section>
+
